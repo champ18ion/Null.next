@@ -8,6 +8,7 @@ const db = require('./config/mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo')(session);
 
 app.use(express.urlencoded({extended:true}));
 
@@ -29,19 +30,30 @@ app.set('views', './views');
 
 
 app.use(session({
-    name: 'codeial',
+    name: 'Void',
     // TODO change the secret before deployment in production mode
     secret: 'blahsomething',
     saveUninitialized: false,
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100)
-    }
+    },
+    store: MongoStore.create(
+        {
+            mongooseConnection: db,
+            autoRemove:'disabled'
+        },
+        function (err) {
+            console.log(err||'connect mongoDB ok');
+        }
+    )
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use(passport.setAuthenticatedUser);
 // use express router
 app.use('/', require('./routes'));
 
