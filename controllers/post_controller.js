@@ -1,4 +1,5 @@
-const Post = require('../models/post')
+const Post = require('../models/post');
+const Comment = require('../models/comment')
 
 module.exports.create = function(req,res){
     Post.create({
@@ -11,4 +12,18 @@ module.exports.create = function(req,res){
         return res.redirect('back');
 
     })
+}
+module.exports.addComment = function (req,res) {
+    Comment.create({
+        content:req.body.comment,
+        user:req.user._id,
+        // post:req.post._id
+        
+
+    },function(err,comments){
+        console.log(req.post)
+        return res.redirect('back')
+        
+    })
+    
 }

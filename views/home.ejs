@@ -15,6 +15,10 @@
         <%for(post of posts){%>
         <li><%=post.content%></li>
         <small><%=post.user.name%></small>
+        <form action="/posts/add-comment" method="post">
+            <input type="text" name="comment" placeholder="comment">
+            <button type="submit">post comment</button>
+        </form>
       </p>
       <%}%>
     </ul>
