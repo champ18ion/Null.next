@@ -9,4 +9,20 @@
         <textarea name="content" id="" cols="30" rows="10"></textarea>
         <button type="submit"> Add post</button>
     </form>
+
+    <div class="posts-container">
+        <ul>
+            <p>
+                <%for(post of posts){%>
+                    <li><%=post.content%></li>
+                    <small><%=post.user.name%></small>
+                    
+
+            </p>
+            <%}%>
+
+        </ul>
+        
+    </div>
 </section>
+
