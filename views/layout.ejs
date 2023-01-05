@@ -3,19 +3,20 @@
         <title>
             <%= title  %>
         </title>
-        <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/output.css">
         <%- style %>
         
     </head>
 
-    <body>
+    <body class="bg-gray-100 dark:bg-gray-800">
         <%- include('_header'); %>
 
         <%- body %>
 
 
-        <%- include('_footer'); %>
+       
 
+        <%- include('_footer'); %>
         <%- script %>
         
     </body>

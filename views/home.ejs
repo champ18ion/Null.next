@@ -1,45 +1,60 @@
-
-<h1>
-  Void / <%= title %>
-</h1>
+<link rel="stylesheet" href="/css/output.css">
 
 
-<section id="feed-posts">
-  <h4>Posts</h4>
-  <% if(locals.user){ %>
-  <form action="/posts/create" id="new-post-form" method="POST">
-      <textarea name="content" cols="30" rows="3" placeholder="Type Here..." required></textarea>
-      <input type="submit" value="Post">
-  </form>
-  <% } %>
 
-  <div id="posts-list-container">
-      <ul>
+<section class="text-gray-600 body-font dark:bg-gray-800 mt-4" id="feed-posts">
+  
+  <div class=" w-full p-6 mx-auto bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-900 dark:border-gray-600">
+
+    <% if(locals.user){ %>
+      <form action="/posts/create" id="new-post-form" method="POST">
+         
+    
+        <label for="message" class="block mb-2 text-sm font-medium text-gray-800 dark:text-white">New Post..</label>
+        <textarea id="message" name="content" rows="4" class="block p-2.5 w-full text-sm text-gray-800 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+    
+        <button type="submit" class="my-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" value="Post">
+          Post
+          <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+      </button>
+          
+      </form>
+      <% } %>
+
+  </div>
+
+  
+
+  <div id="posts-list-container" >
+      <ul class=" w=full p-6 bg-transparent flex  border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
           <% for(post of posts){ %>
               
-          <li>
-              <p>
+          <li class=" w-1/2 m-6 bg-white border hover:bg-gray-50 border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-900">
+            <p class="w-full bg-blue-100 text-blue-800 text-lg font-medium mr-2 px-2.5 py-0.5  dark:bg-blue-900 dark:text-blue-300">
+              <%= post.user.name %>
+            </p>
+              <p class="w-full relative bg-gray-100 text-center text-2xl">
                   <%= post.content %>
                   <br>
-                  <small>
-                      <%= post.user.name %>
-                  </small>
+                  
+                 
               </p>
-              <div class="post-comments">
+              
+              <div class="post-comments mt-2">
                   <% if (locals.user){ %>
                       <form action="/comments/create" method="POST">
-                          <input type="text" name="content" placeholder="Type Here to add comment..." required>
+                          <input type="text" name="content" placeholder="Type Here to add comment..." class="block mb-2 w-full text-sm font-medium text-gray-900 dark:text-white" required>
                           <input type="hidden" name="post" value="<%= post._id %>" >
-                          <input type="submit" value="Add Comment">
+                          <input type="submit" class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400" value="Add Comment">
                       </form>
 
                   <% } %>
 
-                  <div class="post-comments-list">
+                  <div class="post-comments-list bg-white mt-2">
                       <ul id="post-comments">
                           <% for (comment of post.comments){%>
                               
-                          <p>
+                          <p class="text-lg text-black m-2">
                               <%= comment.content %>
                               <br>
                               <small>
