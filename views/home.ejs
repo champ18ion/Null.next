@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/output.css" />
 
-<section class="text-gray-600 body-font dark:bg-gray-800 mt-4" id="feed-posts">
+<section class="" id="feed-posts">
   <div
     class="w-full p-6 mx-auto bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-900 dark:border-gray-600"
   >
@@ -43,9 +43,9 @@
     <% } %>
   </div>
 
-  <div id="posts-list-container">
+  <div id="posts-list-container" class="" >
     <ul
-      class="w=full p-6 bg-transparent flex border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
+      class="w=full bg-transparent flex-col border rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700"
     >
       <% for(post of posts){ %>
 
@@ -97,6 +97,11 @@
                  <%= comment.content %>
                  <br />
                  <small> <%= comment.user.name %> </small>
+                 <% if(locals.user && ((locals.user.id==comment.user.id)||(post.user.id==locals.user.id))){%>
+                  <small>
+                      <a href="comments/destroy/<%=comment.id%>">delete</a>
+                  </small>
+                  <%}%>
                </p>
                <%} %>
              </ul>
