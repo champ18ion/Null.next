@@ -1,29 +1,27 @@
-<div>
+<div class="m-2 bg-blue-100 mx-auto">
   <% if (locals.user){ %>
   <form action="/comments/create" method="POST">
     <input
       type="text"
       name="content"
       placeholder="Type Here to add comment..."
-      class="block mb-2 w-full text-sm font-medium text-gray-900 dark:text-white"
+      class="ml-12 w-3/4 rounded-lg text-sm font-medium text-gray-900 dark:text-white bg-blue-100 p-1"
       required
     />
     <input type="hidden" name="post" value="<%= post._id %>" />
     <input
       type="submit"
-      class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
+      class="bg-blue-100 w-1/8 right-2 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-lg dark:bg-gray-700 dark:text-blue-400 border border-blue-400"
       value="Add Comment"
     />
   </form>
 
   <% } %>
-  <ul>
+  <ul class="h-max-1/3">
     <%for(comment of post.comments){%>
     <div>
-      <span><%=comment.user.name%></span>
-      <div>
-        <p><%=comment.content%></p>
-      </div>
+      <span class="bg-blue-200 text-blue-500 text-sm font-mono font-bold rounded-lg p-1 m-2"><%=comment.user.name%></span>
+      <p class="inline-block m-1 bg-blue-50 rounded-lg px-2 text-blue-400"><%=comment.content%></p>
       <% if(locals.user &&
       ((locals.user.id==comment.user.id)||(post.user.id==locals.user.id))){%>
       <small>
