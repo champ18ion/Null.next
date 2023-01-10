@@ -4,3 +4,13 @@
   <%-include('_post-form'); %>
   <div id="posts-list-container" class=""><%-include('_post');%></div>
 </section>
+
+<section id="user-friends">
+  <h3> Dost </h3>
+  <%for(u of all_users){%>
+    <p>
+      <a href="users/profile/<%=u.id%>"><%=u.name%></a>
+    </p>
+
+    <%}%>
+</section>
