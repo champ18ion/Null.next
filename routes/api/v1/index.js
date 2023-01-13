@@ -1,6 +1,6 @@
 const express = require('express');
-const { route } = require('../../users');
-const rputer = express.Router();
+const router = express.Router();
 
+router.use('/posts',require('./posts'))
 
 module.exports = router;
