@@ -23,15 +23,14 @@
     try {
 
         let post = await Post.findById(req.params.id);
-    //  if(post.user == req.user.id){
+     if(post.user == req.user.id){
         post.remove();
         await Comment.deleteMany({post:req.params.id});
         // req.flash('success','post deleted successfully');
         return res.status(200).json({message: 'post deleted'})
-    //  }else{
-    //     req.flash('error','error in deleting post')
-    //     return res.redirect('back')
-    //  }
+     }else{
+        return res.status(400).json({message:'cant delete post'})
+     }
         
     } catch (error) {
         return res.status(200).json({message:error});
