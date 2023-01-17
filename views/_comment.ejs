@@ -21,6 +21,15 @@
     <div>
       <span class="bg-blue-200 text-blue-500 text-sm font-mono font-bold rounded-lg p-1 m-2"><%=comment.user.name%></span>
       <p class="inline-block m-1 bg-blue-50 rounded-lg px-2 text-blue-400"><%=comment.content%></p>
+      <small>
+        <% if(locals.user){ %>
+            <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id %>&type=Comment">
+                <%= comment.likes.length %> likes
+            </a>
+        <% }else{ %>
+            <%= comment.likes.length %> likes
+        <% } %>
+        </small> 
       <% if(locals.user &&
       ((locals.user.id==comment.user.id)||(post.user.id==locals.user.id))){%>
       <small>
